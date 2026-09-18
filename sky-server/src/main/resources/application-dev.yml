@@ -1,0 +1,33 @@
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: sky_take_out
+    username: root
+    password: 1234
+
+  alioss:
+    endpoint: //更改为自己的配置
+    access-key-id: //更改为自己的配置
+    access-key-secret: //更改为自己的配置
+    bucket-name: //更改为自己的配置
+  redis:
+    host: localhost
+    port: 6379
+    password: 1234
+    database: 0
+  wechat:
+    appid: //更改为自己的配置
+    secret: //更改为自己的配置
+    mchid: //更改为自己的配置
+    mch-serial-no: //更改为自己的配置
+    private-key-file-path: //更改为自己的配置
+    api-v3-key: //更改为自己的配置
+    we-chat-pay-cert-file-path: //更改为自己的配置
+    notify-url: //更改为自己的配置
+    refund-notify-url: //更改为自己的配置
+  shop:
+    address: //更改为自己的配置
+  baidu:
+    ak: //更改为自己的配置

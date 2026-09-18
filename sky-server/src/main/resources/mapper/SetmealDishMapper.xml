@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.SetmealDishMapper">
+
+    <insert id="insertBatch">
+        insert into setmeal_dish (setmeal_id, dish_id, copies)
+        values
+        <foreach collection="setmealDishes" item="item" separator=",">
+            (#{item.setmealId}, #{item.dishId}, #{item.copies})
+        </foreach>
+    </insert>
+
+    <delete id="deleteBySetmealIds">
+        delete from setmeal_dish where setmeal_id in
+        <foreach collection="ids" item="setmealId" open="(" separator="," close=")">#{setmealId}</foreach>
+    </delete>
+
+
+    <select id="getSetmealIdsByDishIds" resultType="java.lang.Long">
+        select setmeal_id from setmeal_dish where dish_id in
+            <foreach collection="dishIds" item="dishId" separator="," open="(" close=")">
+                #{dishId}
+            </foreach>
+    </select>
+
+    <select id="getSetmealIdsByDishId" resultType="java.lang.Long">
+        select setmeal_id from setmeal_dish where dish_id = #{dishId}
+    </select>
+
+    <select id="getDishBySetmealId" resultType="com.sky.vo.SetmealDishVO">
+        select
+            sd.id,
+            sd.setmeal_id setmealId,
+            sd.dish_id dishId,
+            sd.copies,
+            d.name,
+            d.price
+        from setmeal_dish sd
+                 left join dish d on sd.dish_id = d.id
+        where sd.setmeal_id = #{setmealId}
+    </select>
+</mapper>
